@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Open Copilot session</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>body{font-family:Segoe UI,sans-serif;margin:3rem;color:#333}a{color:#0078d4}</style>
+</head>
+<body>
+<p id="msg">Opening your Copilot session&hellip;</p>
+<script>
+  var id = location.hash.slice(1);
+  var msg = document.getElementById("msg");
+  if (/^[0-9a-f-]{8,64}$/i.test(id)) {
+    var target = "ghapp://sessions/" + id;
+    location.href = target;
+    msg.textContent = "If the app didn't open, ";
+    var a = document.createElement("a");
+    a.href = target;
+    a.textContent = "click here to open the session";
+    msg.appendChild(a);
+    msg.appendChild(document.createTextNode("."));
+  } else {
+    msg.textContent = "No valid session id in the link.";
+  }
+</script>
+</body>
+</html>
